@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02_TaskManager", "02_TaskMa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "00_GetArguments", "00_GetArguments\00_GetArguments.csproj", "{9E92A529-85BC-417D-A322-AF0F322B69EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04_Generate_async_await", "04_Generate_async_await\04_Generate_async_await.csproj", "{7BF22FFF-4181-45C7-8A15-108AC88DCB31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04_Generate_async_await", "04_Generate_async_await\04_Generate_async_await.csproj", "{7BF22FFF-4181-45C7-8A15-108AC88DCB31}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05_FileCopy_app", "05_FileCopy_app\05_FileCopy_app.csproj", "{F29085B9-5031-43E9-B46A-3C003E77F483}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{7BF22FFF-4181-45C7-8A15-108AC88DCB31}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7BF22FFF-4181-45C7-8A15-108AC88DCB31}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7BF22FFF-4181-45C7-8A15-108AC88DCB31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F29085B9-5031-43E9-B46A-3C003E77F483}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F29085B9-5031-43E9-B46A-3C003E77F483}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F29085B9-5031-43E9-B46A-3C003E77F483}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F29085B9-5031-43E9-B46A-3C003E77F483}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
