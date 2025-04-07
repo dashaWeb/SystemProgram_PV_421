@@ -5,24 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_05_FileCopy_app"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        d:DataContext="{d:DesignInstance local:ViewModel, IsDesignTimeCreatable=True}"
+        Title="MainWindow" Height="450" Width="800"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        >
     <Window.Resources>
-        <Style TargetType="{x:Type Button}">
-            <Setter Property="Margin" Value="5"></Setter>
-            <Setter Property="Padding" Value="5"></Setter>
-            <Setter Property="FontWeight" Value="Bold"></Setter>
-            <Setter Property="FontStyle" Value="Italic"></Setter>
-            <Setter Property="Background" Value="#FF501A1A"></Setter>
-            <Setter Property="Foreground" Value="White"></Setter>
-            <Setter Property="FontFamily" Value="Dutch801 XBd BT"></Setter>
-            <Setter Property="FontSize" Value="20"></Setter>
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatMidBgButton}">
+            <Setter Property="Margin" Value="10"></Setter>
         </Style>
         <Style TargetType="TextBox" x:Key="pathTextBox">
             <Setter Property="Margin" Value="5"></Setter>
             <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
         </Style>
     </Window.Resources>
-    <DockPanel LastChildFill="False">
+    <DockPanel LastChildFill="True">
         <Grid DockPanel.Dock="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -35,7 +38,7 @@
             </Grid.RowDefinitions>
 
             <Label VerticalAlignment="Center">From:</Label>
-            <TextBox Name="srcTextBox" Style="{StaticResource pathTextBox}" Grid.Column="1" TextChanged="srcTextBox_TextChanged" ></TextBox>
+            <TextBox Name="srcTextBox" Style="{StaticResource pathTextBox}" Grid.Column="1"></TextBox>
             <Button Click="OpenFileBtn" Grid.Column="2">Browse</Button>
 
             <Label Grid.Row="1" VerticalAlignment="Center">To:</Label>
@@ -44,7 +47,27 @@
 
         </Grid>
         <Button Click="CopyFileBtn" DockPanel.Dock="Top">Copy</Button>
-        <ProgressBar Name="progress" DockPanel.Dock="Bottom" IsIndeterminate="False" Height="30"></ProgressBar>
-        <TextBlock DockPanel.Dock="Bottom" HorizontalAlignment="Center" Name="percentage_"></TextBlock>
+        <ProgressBar Name="progress" DockPanel.Dock="Bottom" IsIndeterminate="{Binding IsWaiting}" Height="30"></ProgressBar>
+        <ListBox HorizontalContentAlignment="Stretch" ItemsSource="{Binding Processes}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock FontWeight="Bold" Margin="20,0" Text="{Binding FileName}"></TextBlock>
+                        <TextBlock Grid.Column="1" FontWeight="Bold" Margin="20,0">Speed: <Run Text="{Binding MegaBytesPerSeconds, Mode=OneWay}"></Run>Mb/s</TextBlock>
+                        <ProgressBar
+                            Foreground="{StaticResource PrimaryHueDarkForegroundBrush}"
+                            Background="{StaticResource PrimaryHueMidBrush}"
+                            Grid.Column="2" Height="10" Margin="5" Value="{Binding Percentage}"></ProgressBar>
+                        <TextBlock Grid.Column="3" Margin="20,0"><Run Text="{Binding PercentageInt, Mode=OneWay}"></Run>%</TextBlock>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </DockPanel>
 </Window>
